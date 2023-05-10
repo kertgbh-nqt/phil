@@ -29,6 +29,5 @@ int	clean_simu(t_data *data)
 	pthread_mutex_destroy(&data->all_eat_m);
 	free(data->philos);
 	free(data->forks);
-	free(data);
 	return (0);
 }

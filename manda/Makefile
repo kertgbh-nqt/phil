@@ -1,6 +1,6 @@
 name = philo
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 
 SRC = clean_simu.c init.c simulation.c time_manipulation.c fill_struct.c main.c printer.c superviser.c
 

@@ -26,5 +26,5 @@ void	new_usleep(unsigned long duration)
 
 	start = get_time_ms();
 	while (get_time_ms() - start < duration)
-		usleep(10);
+		usleep(1);
 }

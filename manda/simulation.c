@@ -36,7 +36,7 @@ void	*simulation(void *arg)
 
 	philo = arg;
 	if (philo->index % 2 && philo->data->philo_nbr > 1)
-		usleep(10000);
+		usleep(100 * philo->data->philo_nbr);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->simu_status_m);

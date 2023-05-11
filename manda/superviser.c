@@ -17,15 +17,21 @@ void	check_death(t_data *data, t_philo *philo)
 	int	t;
 
 	i = -1;
-	while (++i < data->philo_nbr && data->simu_status == ON)
+	while (++i < data->philo_nbr)
 	{
+		pthread_mutex_lock(&philo->data->simu_status_m);
+		if (data->simu_status != ON)
+			break ;
+		pthread_mutex_unlock(&philo->data->simu_status_m);
 		pthread_mutex_lock(&data->food);
 		t = (int)get_time_ms() - philo[i].last_meal_time;
 		if (t >= data->time_to_die
 			|| (t >= data->time_to_die && data->philo_nbr == 1))
 		{
 			print_routine("died", &philo[i], NEED_TO_STOP);
+			pthread_mutex_lock(&philo->data->simu_status_m);
 			data->simu_status = OFF;
+			pthread_mutex_unlock(&philo->data->simu_status_m);
 		}
 		pthread_mutex_unlock(&data->food);
 	}

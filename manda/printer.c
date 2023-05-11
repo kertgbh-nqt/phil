@@ -25,8 +25,8 @@ void	print_routine(char *str, t_philo *philo, int superviser)
 {
 	unsigned int	time_to_write;
 
-	time_to_write = get_time_ms() - philo->data->sst;
 	pthread_mutex_lock(&philo->data->is_writing);
+	time_to_write = get_time_ms() - philo->data->sst;
 	pthread_mutex_lock(&philo->data->simu_status_m);
 	if (philo->data->simu_status == ON && philo->data->need_to_eat != 0)
 		pthread_mutex_unlock(&philo->data->simu_status_m);

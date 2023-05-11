@@ -38,45 +38,44 @@ typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
-	pthread_t	thread;
-	t_data		*data;
-	int 	left_to_eat;
-	int			index;
-	int 		my_right_fork_id;
-	int 	my_mate_fork_id;
-	unsigned long last_meal_time;
+	pthread_t		thread;
+	t_data			*data;
+	int				left_to_eat;
+	int				index;
+	int				my_right_fork_id;
+	int				my_mate_fork_id;
+	unsigned long	last_meal_time;
 
 }	t_philo;
 
 typedef struct s_data
 {
-	int philo_nbr;
-	int all_eat; //how many one full ate
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int need_to_eat;
-	t_philo *philos;
-	int simu_status;
-	unsigned long sst; //starting time
+	int				philo_nbr;
+	int				all_eat;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				need_to_eat;
+	t_philo			*philos;
+	int				simu_status;
+	unsigned long	sst;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	is_writing;
+	pthread_mutex_t	food;
+	pthread_mutex_t	left_to_eat_m;
+	pthread_mutex_t	simu_status_m;
+	pthread_mutex_t	all_eat_m;
+}	t_data;
 
-	pthread_mutex_t *forks;
-	pthread_mutex_t is_writing;
-	pthread_mutex_t food;
-	pthread_mutex_t left_to_eat_m;
-	pthread_mutex_t simu_status_m;
-	pthread_mutex_t all_eat_m;
-} t_data;
-
-void	ft_print_fd(int fd, char *str);
-int	fill_struct(char **str, t_data *data);
+void			ft_print_fd(int fd, char *str);
+int				fill_struct(char **str, t_data *data);
 unsigned long	get_time_ms(void);
-int	start_simulation(t_data *data);
-int	ft_init_more_data(t_data *data);
-void	print_routine(char *str, t_philo *philo, int superviser);
-void	new_usleep(unsigned long duration);
-void	superviser(t_data *data, t_philo *philo);
-int	clean_simu(t_data *data);
+int				start_simulation(t_data *data);
+int				ft_init_more_data(t_data *data);
+void			print_routine(char *str, t_philo *philo, int superviser);
+void			new_usleep(unsigned long duration);
+void			superviser(t_data *data, t_philo *philo);
+int				clean_simu(t_data *data);
 
 //need to recheck new_usleep
 

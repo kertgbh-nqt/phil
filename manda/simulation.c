@@ -68,6 +68,9 @@ int	start_simulation(t_data *data)
 				&(data->philos[i])))
 			return (-1);
 	}
+	i = -1;
+	while (++i < data->philo_nbr)
+		pthread_detach(data->philos[i].thread);
 	superviser(data, data->philos);
 	pthread_mutex_unlock(&data->is_writing);
 	return (1);

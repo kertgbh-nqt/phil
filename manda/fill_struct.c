@@ -29,7 +29,7 @@ int	fill_phase_one(int unsigned num, int i, t_data *data)
 	{
 		data->need_to_eat = num;
 	}
-	if (num == 0 && i != 5)
+	if (num == 0)
 		return (-1);
 	return (0);
 }
